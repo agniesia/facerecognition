@@ -105,10 +105,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Binary.cs" />
+    <Compile Include="FaceBiom.cs" />
+    <Compile Include="Grey.cs" />
+    <Compile Include="image_as_tab.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Memento\Memento.cs" />
+    <Compile Include="Memento\Memory.cs" />
+    <Compile Include="Memento\OrginalState.cs" />
+    <Compile Include="Otsu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RGB.cs" />
+    <Compile Include="RGBtoGrey.cs" />
+    <Compile Include="Sobel.cs" />
+    <Compile Include="Visitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

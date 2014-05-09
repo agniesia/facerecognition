@@ -13,7 +13,7 @@
 					<ColumnDefinition/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<Button x:Name="open" Content="OPEN" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch"/>
+				<Button x:Name="open" Content="OPEN" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Click="wczytajimage"/>
 			</Grid>
 		</AppBar>
 	</Page.TopAppBar>
@@ -34,10 +34,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button x:Name="CameraPreview" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="159,143,0,0" VerticalAlignment="Top" Click="btnStartDevice_Click"/>
-        <Canvas x:Name="Video" Margin="0" Grid.RowSpan="2">
-            <CaptureElement x:Name="VideoCaptured"/>
-        </Canvas>
         <TextBlock x:Name="text" Grid.Column="1" HorizontalAlignment="Left" Margin="259,73,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="94" Width="290"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2">
+        	<Image x:Name="show" Margin="0"/>
+        </Border>
 
     </Grid>
 </Page>

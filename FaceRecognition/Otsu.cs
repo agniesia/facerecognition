@@ -15,19 +15,75 @@ namespace lab01biometria.imageoperation
         public void rob(image_as_tab image) {
             OtsuAll(image);
         }
-        public void Visit(image_RGB rgb) {
+        public void Visit(image_RGB rgb)
+        {
 
-            //zmiana na grey jak beda funckje
-            image_Gray Grey = new image_Gray();
-            RGBtoGrey v = new RGBtoGrey();
-            v.RGBtoGreyAll(rgb);
+            int[] histData = new int[256];
+            for (int x = 0; x < rgb.w; x++)
+            {
 
-            Grey = v.GreyElement;
-            Visit(Grey);
-           
-            
-            //copis na 2 D binary
+                for (int y = 0; y < rgb.h; y++)
+                {
+                    int h = rgb.G[x][y];
+                    histData[h]++;
+
+                }
+            }
+
+
+            // Total number of pixels
+            int total = rgb.w * rgb.h;
+
+            float sum = 0;
+            for (int t = 0; t < 256; t++) sum += t * histData[t];
+
+            float sumB = 0;
+            int wB = 0;
+            int wF = 0;
+
+            float varMax = 0;
+            float threshold = 0;
+
+            for (int t = 0; t < 256; t++)
+            {
+                wB += histData[t];               // Weight Background
+                if (wB == 0) continue;
+
+                wF = total - wB;                 // Weight Foreground
+                if (wF == 0) break;
+
+                sumB += (float)(t * histData[t]);
+
+                float mB = sumB / wB;            // Mean Background
+                float mF = (sum - sumB) / wF;    // Mean Foreground
+
+                // Calculate Between Class Variance
+                float varBetween = (float)wB * (float)wF * (mB - mF) * (mB - mF);
+
+                // Check if new maximum found
+                if (varBetween > varMax)
+                {
+                    varMax = varBetween;
+                    threshold = t;
+                }
+            }
+            byte pixelvalue = 0;
+            for (int x = 0; x < rgb.w; x++)
+            {
+
+                for (int y = 0; y < rgb.h; y++)
+                {
+                    pixelvalue = rgb.G[x][y] <= threshold ? (byte)0 : (byte)255;
+                    rgb.G[x][y] = pixelvalue;
+                    rgb.R[x][y] = pixelvalue;
+                    rgb.B[x][y] = pixelvalue;
+                }
+
+
+                //copis na 2 D binary
+            }
         }
+        
         public void Visit(image_Gray Grey) {
             
             int[]  histData=new int[256];
