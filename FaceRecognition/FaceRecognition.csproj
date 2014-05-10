@@ -106,6 +106,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Binary.cs" />
+    <Compile Include="Dilatation.cs" />
+    <Compile Include="Erosion.cs" />
     <Compile Include="FaceBiom.cs" />
     <Compile Include="Grey.cs" />
     <Compile Include="image_as_tab.cs" />
