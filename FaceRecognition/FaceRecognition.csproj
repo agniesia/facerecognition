@@ -105,24 +105,33 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Binary.cs" />
-    <Compile Include="Dilatation.cs" />
-    <Compile Include="Erosion.cs" />
-    <Compile Include="FaceBiom.cs" />
-    <Compile Include="Grey.cs" />
-    <Compile Include="image_as_tab.cs" />
+    <Compile Include="FaceRecognition\FaceElementDetect.cs" />
+    <Compile Include="FaceRecognition\HistogramFaceElement.cs" />
+    <Compile Include="FaceRecognition\HSVfacerecognition.cs" />
+    <Compile Include="FaceRecognition\JoinRecogntion.cs" />
+    <Compile Include="FaceRecognition\RGBfaceRecognition.cs" />
+    <Compile Include="FaceRecognition\SVfaceRecognition.cs" />
+    <Compile Include="imageoperation\Histogram.cs" />
+    <Compile Include="imageoperation\Negative.cs" />
+    <Compile Include="imageoperation\Segmentation.cs" />
+    <Compile Include="imagestype\Binary.cs" />
+    <Compile Include="imageoperation\Dilatation.cs" />
+    <Compile Include="imageoperation\Erosion.cs" />
+    <Compile Include="FaceRecognition\FaceBiomHelpMethod.cs" />
+    <Compile Include="imagestype\Grey.cs" />
+    <Compile Include="imagestype\image_as_tab.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Memento\Memento.cs" />
     <Compile Include="Memento\Memory.cs" />
     <Compile Include="Memento\OrginalState.cs" />
-    <Compile Include="Otsu.cs" />
+    <Compile Include="imageoperation\Otsu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RGB.cs" />
-    <Compile Include="RGBtoGrey.cs" />
-    <Compile Include="Sobel.cs" />
-    <Compile Include="Visitor.cs" />
+    <Compile Include="imagestype\RGB.cs" />
+    <Compile Include="imageoperation\RGBtoGrey.cs" />
+    <Compile Include="imageoperation\Sobel.cs" />
+    <Compile Include="imageoperation\Visitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -131,6 +140,7 @@
     <None Include="FaceRecognition_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\images.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />

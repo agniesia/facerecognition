@@ -7,23 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 	<Page.TopAppBar>
-		<AppBar Margin="0,0,0,-190">
+		<AppBar Margin="0,0,0,-190" Foreground="#FFD34646" Opacity="0.8">
+			<AppBar.Background>
+				<ImageBrush ImageSource="ms-appx:/Assets/images.jpg" Stretch="Fill"/>
+			</AppBar.Background>
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<Button x:Name="open" Content="OPEN" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Click="wczytajimage"/>
+				<Button x:Name="open" Content="Open" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Click="wczytajimage" BorderBrush="Black" Foreground="Black" FontFamily="Kunstler Script" FontSize="96">
+					<Button.Background>
+						<ImageBrush Stretch="Fill"/>
+					</Button.Background>
+				</Button>
+				<Button x:Name="CameraPreview" Content="Take Photo" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Click="btnStartDevice_Click" BorderBrush="Black" Foreground="Black" FontFamily="Kunstler Script" FontSize="96"/>
 			</Grid>
 		</AppBar>
 	</Page.TopAppBar>
 
-    <Grid>
+    <Grid x:Name="Grid">
     	<Grid.Background>
-    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-    			<GradientStop Color="Black" Offset="0"/>
-    			<GradientStop Color="#FF057053" Offset="1"/>
-    		</LinearGradientBrush>
+    		<ImageBrush Stretch="Fill" ImageSource="Assets/images.jpg"/>
     	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -33,11 +38,61 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="CameraPreview" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="159,143,0,0" VerticalAlignment="Top" Click="btnStartDevice_Click"/>
-        <TextBlock x:Name="text" Grid.Column="1" HorizontalAlignment="Left" Margin="259,73,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="94" Width="290"/>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2">
+        <Viewbox x:Name="allview" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="text" Grid.Column="1" HorizontalAlignment="Center" Margin="20,20,40,20" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="48" FontFamily="Kunstler Script" Foreground="#FF010101" TextAlignment="Justify">
+        	<Run Text="This program fi"/>
+        	<Run Text="n"/>
+        	<Run Text="d"/>
+        	<Run Text="s"/>
+        	<Run Text=" face with "/>
+        	<Run Text="its"/>
+        	<Run Text=" elements"/>
+        	<Run Text=":"/>
+        	<Run Text=" eyes mouth and nose. "/>
+        	<Run Text="T"/>
+        	<Run Text="here are four biometric methods"/>
+        	<Run Text=" to recognize face"/>
+        	<Run Text=". The methods "/>
+        	<Run Text="work "/>
+        	<Run Text="only for "/>
+        	<Run Text="portrait photos. "/>
+        	<Run Text="P"/>
+        	<Run Text="ortrait"/>
+        	<Run Text=" "/>
+        	<Run Text="photo should contain on"/>
+        	<Run Text="l"/>
+        	<Run Text="y "/>
+        	<Run Text="single"/>
+        	<Run Text=" face."/>
+        </TextBlock>
+        <Border x:Name="ramka" BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2" Margin="20">
+        	<Border.Background>
+        		<ImageBrush Stretch="Fill"/>
+        	</Border.Background>
         	<Image x:Name="show" Margin="0"/>
         </Border>
+        <Grid x:Name="buton" Grid.Column="1" Grid.Row="1" Margin="20">
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition/>
+        		<ColumnDefinition/>
+        	</Grid.ColumnDefinitions>
+        	<Grid.RowDefinitions>
+        		<RowDefinition/>
+        		<RowDefinition/>
+        		<RowDefinition/>
+        	</Grid.RowDefinitions>
+			<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E" Grid.Column="1"/>
+        	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E" Grid.Row="1"/>
+        	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E" Grid.Row="1" Grid.Column="1"/>
+        	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E" Grid.Row="3" Grid.ColumnSpan="2"/>
+        	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E"/>
+        	<Button x:Name="HSVmethod" Content="HSV method" HorizontalAlignment="Stretch" Margin="0" Grid.Row="1" VerticalAlignment="Stretch" FontSize="48" Click="HSVmethod_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}"/>
+        	<Button x:Name="SV_method" Content="SV method" HorizontalAlignment="Stretch" Margin="0" Grid.Row="1" VerticalAlignment="Stretch" FontSize="48" Click="SV_method_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}" Grid.Column="1"/>
+        	<Button x:Name="Join_method" Content="Join all methods" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" FontSize="48" Click="Join_method_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}"/>
+        	<Button x:Name="find_elents" Content="Find face's elements" HorizontalAlignment="Stretch" Margin="0" Grid.Row="2" VerticalAlignment="Stretch" FontSize="48" Click="find_elents_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}" Grid.ColumnSpan="2"/>
+        	<Button x:Name="RGBmethod" Content="RGB method" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" FontSize="48" Click="RGBmethod_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00BEBEBE" Background="{x:Null}"/>
+        	
+        </Grid>
 
     </Grid>
 </Page>

@@ -39,12 +39,38 @@ namespace FaceRecognition
         public MainPage()
         {
             this.InitializeComponent();
+            SizeChanged += MainPage_SizeChanged;
+            DisableButtons();
+            org = new lab01biometria.Memento.Originator();
+            caretaker = new lab01biometria.Memento.Caretaker();
             
         }
+
+        lab01biometria.Memento.Originator org;
+        lab01biometria.Memento.Caretaker caretaker;
         image_as_tab ImageToWork;
         BitmapDecoder decoder;
         Guid decoderId;
         byte[] sourcePixels;
+        Visitor method = null;
+        private void DisableButtons()
+        {
+            HSVmethod.IsEnabled=false;
+            SV_method.IsEnabled = false;
+            RGBmethod.IsEnabled = false;
+            Join_method.IsEnabled = false;
+            find_elents.IsEnabled = false;
+
+        }
+        private void ableButtons()
+        {
+            HSVmethod.IsEnabled = true;
+            SV_method.IsEnabled = true;
+            RGBmethod.IsEnabled = true;
+            Join_method.IsEnabled = true;
+            find_elents.IsEnabled = true;
+
+        }
         private async void wczytajimage(object sender, RoutedEventArgs e)
         {
             IRandomAccessStream fileStream; // Wczytanie pliku do strumienia
@@ -110,12 +136,13 @@ namespace FaceRecognition
                 );
                 sourcePixels = pixelData.DetachPixelData();
                 ImageToWork = new image_RGB(sourcePixels, w, h);
-                Visitor v = new FaceBiom();
-                v.rob(ImageToWork);
-                v = new lab01biometria.imageoperation.Otsu();
-                v.rob(ImageToWork);
+               
+                //v = new lab01biometria.imageoperation.Otsu();
+                //v.rob(ImageToWork);
                 bitmpe(ImageToWork);
-                
+                ableButtons();
+                org.State = ImageToWork;
+                caretaker.Memento = org.SaveMemento();
                 
             }
         }
@@ -136,7 +163,7 @@ namespace FaceRecognition
         internal async void btnStartDevice_Click(Object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             CameraCaptureUI dialog = new CameraCaptureUI();
-            Size aspectRatio = new Size(16, 9);
+            Size aspectRatio = new Size();
             dialog.PhotoSettings.CroppedAspectRatio = aspectRatio;
             StorageFile file = await dialog.CaptureFileAsync(CameraCaptureUIMode.Photo);
             BitmapImage bitmapImage = new BitmapImage();
@@ -181,14 +208,117 @@ namespace FaceRecognition
                 ColorManagementMode.DoNotColorManage
                 );
                 sourcePixels = pixelData.DetachPixelData();
+                int w = bitmapImage.PixelWidth;
+                int h = bitmapImage.PixelHeight;
+                ImageToWork = new image_RGB(sourcePixels, w, h);
+
+                show.Source = bitmapImage;
+                ableButtons();
+              
+
+                org.State = ImageToWork;
+                caretaker.Memento = org.SaveMemento();
             }
-            int w = bitmapImage.PixelWidth;
-            int h = bitmapImage.PixelHeight;
-            ImageToWork = new image_RGB(sourcePixels, w, h);
-               
-            show.Source= bitmapImage;
+            
         }
-        
+
+        private void RGBmethod_Click(object sender, RoutedEventArgs e)
+        {
+            method = new RGBfaceRecognition();
+            method.rob(ImageToWork);
+            bitmpe(ImageToWork);
+            org.RestoreMemento(caretaker.Memento);
+            ImageToWork = org.State;
+        }
+
+        private void HSVmethod_Click(object sender, RoutedEventArgs e)
+        {
+            method = new HSVfaceRecognition();
+            method.rob(ImageToWork);
+            //methodrob(method);
+            bitmpe(ImageToWork);
+            org.RestoreMemento(caretaker.Memento);
+            ImageToWork = org.State;
+        }
+
+        private void SV_method_Click(object sender, RoutedEventArgs e)
+        {
+            method = new SVfaceRecognition();
+            method.rob(ImageToWork);
+            //methodrob(method);
+            bitmpe(ImageToWork);
+            org.RestoreMemento(caretaker.Memento);
+            ImageToWork = org.State;
+        }
+
+        private void Join_method_Click(object sender, RoutedEventArgs e)
+        {
+            method = new JoinRecogntion();
+            method.rob(ImageToWork);
+            //methodrob(method);
+            bitmpe(ImageToWork);
+            org.RestoreMemento(caretaker.Memento);
+            ImageToWork = org.State;
+
+        }
+
+        private void find_elents_Click(object sender, RoutedEventArgs e)
+        {
+            method = new FaceElementDetect();
+            method.rob(ImageToWork);
+            //methodrob(method);
+            bitmpe(ImageToWork);
+            org.RestoreMemento(caretaker.Memento);
+            ImageToWork = org.State;
+        }
+        private async  void methodrob(Visitor v)
+        {
+            
+            await Windows.System.Threading.ThreadPool.RunAsync(new Windows.System.Threading.WorkItemHandler((IAsyncAction action) =>
+            {
+                v.rob(ImageToWork);
+            }));
+            
+        }
+
+
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            if (e.NewSize.Height / e.NewSize.Width >= 1)
+            {
+
+                Grid.SetColumn(this.ramka, 0);
+                Grid.SetRow(this.ramka, 0);
+                Grid.SetColumnSpan(this.ramka, 2);
+                Grid.SetRowSpan(this.ramka, 1);
+                //-------------------------------
+                Grid.SetColumn(this.text, 0);
+                Grid.SetRow(this.text, 1);
+                //-------------------------------
+                Grid.SetColumn(this.buton, 1);
+                Grid.SetRow(this.buton, 1);
+
+
+               
+            }
+
+            else if (e.NewSize.Height / e.NewSize.Width < 1)
+            {
+                Grid.SetColumn(this.ramka, 0);
+                Grid.SetRow(this.ramka, 0);
+                Grid.SetColumnSpan(this.ramka, 1);
+                Grid.SetRowSpan(this.ramka, 2);
+                //-------------------------------
+                Grid.SetColumn(this.text, 1);
+                Grid.SetRow(this.text, 0);
+                //-------------------------------
+                Grid.SetColumn(this.buton, 1);
+                Grid.SetRow(this.buton, 1);
+
+                
+            }
+        }
     }
 
 }
