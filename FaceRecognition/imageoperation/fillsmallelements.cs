@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace lab01biometria.Binaryoperation
 {
     
-    class Segmentation:Visitor
+    class FillSmallElements:Visitor
     {
         public void SegemtationAll(image_as_tab binary )
         {
@@ -23,21 +23,24 @@ namespace lab01biometria.Binaryoperation
             
             var wspolrzedne=segment(rgb);
 
-            foreach (Tuple<int, int, int, int> wsp in wspolrzedne)
+            if (wspolrzedne.Count > 1)
             {
-                if (wsp.Item3 - wsp.Item1 < 20 &&  (wsp.Item4 -wsp.Item2)<20)
-                for (int i = wsp.Item1 - 3; i < wsp.Item3 - 3; i++)
+                wspolrzedne.RemoveAt(0);
+                foreach (Tuple<int, int, int, int> wsp in wspolrzedne)
                 {
-                    for (int j = wsp.Item2 - 3; j < wsp.Item4 - 3; j++)
-                    {
-                        rgb.R[i][j] =(byte)0;
-                       rgb.G[i][j] =(byte) 0;
-                       rgb.B[i][j] =(byte) 0;
-                    }
 
+                    for (int i = wsp.Item1 - 3; i < wsp.Item3 - 3; i++)
+                    {
+                        for (int j = wsp.Item2 - 3; j < wsp.Item4 - 3; j++)
+                        {
+                            rgb.R[i][j] = (byte)0;
+                            rgb.G[i][j] = (byte)0;
+                            rgb.B[i][j] = (byte)0;
+                        }
+
+                    }
                 }
             }
-
 
             byte white = 255;
             byte temp = 0;

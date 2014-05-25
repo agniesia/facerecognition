@@ -105,15 +105,23 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EarRecognition\Countur.cs" />
+    <Compile Include="EarRecognition\Pionts.cs" />
     <Compile Include="FaceRecognition\FaceElementDetect.cs" />
     <Compile Include="FaceRecognition\HistogramFaceElement.cs" />
     <Compile Include="FaceRecognition\HSVfacerecognition.cs" />
     <Compile Include="FaceRecognition\JoinRecogntion.cs" />
     <Compile Include="FaceRecognition\RGBfaceRecognition.cs" />
     <Compile Include="FaceRecognition\SVfaceRecognition.cs" />
+    <Compile Include="imageoperation\Canny.cs" />
+    <Compile Include="EarRecognition\FindEar.cs" />
     <Compile Include="imageoperation\Histogram.cs" />
     <Compile Include="imageoperation\Negative.cs" />
+    <Compile Include="imageoperation\NormalizeImage.cs" />
+    <Compile Include="imageoperation\fillsmallelements.cs" />
     <Compile Include="imageoperation\Segmentation.cs" />
+    <Compile Include="imageoperation\Skeleton.cs" />
+    <Compile Include="imageoperation\ThresholdingGlobal.cs" />
     <Compile Include="imagestype\Binary.cs" />
     <Compile Include="imageoperation\Dilatation.cs" />
     <Compile Include="imageoperation\Erosion.cs" />
@@ -137,7 +145,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="FaceRecognition_TemporaryKey.pfx" />
+    <None Include="EarRecognition_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\images.jpg" />

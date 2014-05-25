@@ -4,65 +4,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab01biometria.Binaryoperation
+namespace EarRecognition
 {
     
-    class Segmentation:Visitor
+    class FindEar:lab01biometria.Visitor
     {
-        public void SegemtationAll(image_as_tab binary )
+        public Tuple<int,int> punkt1;
+        public Tuple<int, int> punkt2;
+        public Tuple<int, int> punkt3;
+        public Tuple<int, int> punkt4;
+
+
+
+        public void SegemtationAll(lab01biometria.image_as_tab binary )
         {
             binary.Accept(this);
 
         }
-        public void rob(image_as_tab image)
+        public void rob(lab01biometria.image_as_tab image)
         {
             SegemtationAll(image);
         }
-        public void Visit(image_RGB rgb)
+        public void Visit(lab01biometria.image_RGB rgb)
         {
             
             var wspolrzedne=segment(rgb);
 
-            foreach (Tuple<int, int, int, int> wsp in wspolrzedne)
+            if (wspolrzedne.Count == 1)
             {
-                if (wsp.Item3 - wsp.Item1 < 20 &&  (wsp.Item4 -wsp.Item2)<20)
-                for (int i = wsp.Item1 - 3; i < wsp.Item3 - 3; i++)
+               
+                foreach (Tuple<int, int, int, int> wsp in wspolrzedne)
                 {
-                    for (int j = wsp.Item2 - 3; j < wsp.Item4 - 3; j++)
+
+                    for (int i = wsp.Item1 - 3; i < wsp.Item3 - 3; i++)
                     {
-                        rgb.R[i][j] =(byte)0;
-                       rgb.G[i][j] =(byte) 0;
-                       rgb.B[i][j] =(byte) 0;
+                        
+                        if (rgb.R[i][wsp.Item2 - 3] != 0)
+                        {
+                            punkt2 = new Tuple<int, int>(i, wsp.Item2 - 3);
+
+                        }
+                        if (rgb.R[i][wsp.Item4 - 4] != 0)
+                        {
+                            punkt4 = new Tuple<int, int>(i, wsp.Item4 - 3);
+                        }
+                         
                     }
+                    for (int j = wsp.Item2 - 3; j < wsp.Item4 - 3; j++)
+                        {
+                            if (rgb.R[wsp.Item1-3][j] != 0)
+                            {
+                                punkt1 = new Tuple<int, int>(wsp.Item1-3,j);
 
+                            }
+                            if (rgb.R[wsp.Item3-4][j] != 0 )
+                            {
+                                punkt3 = new Tuple<int, int>(wsp.Item3-4,j);
+                            }
+                         
+                        
+
+                    }
                 }
             }
 
+            //byte white = 255;
+            //byte temp = 0;
+            //for (int x = 0; x < rgb.w; x++)
+            //{
+            //    for (int y = 0; y < rgb.h; y++)
+            //    {
 
-            byte white = 255;
-            byte temp = 0;
-            for (int x = 0; x < rgb.w; x++)
-            {
-                for (int y = 0; y < rgb.h; y++)
-                {
+            //        temp = rgb.R[x][y] == 0 ? white : (byte)0;
+            //        rgb.B[x][y] = temp;
+            //        rgb.G[x][y] = temp;
+            //        rgb.R[x][y] = temp;
 
-                    temp = rgb.R[x][y] == 0 ? white : (byte)0;
-                    rgb.B[x][y] = temp;
-                    rgb.G[x][y] = temp;
-                    rgb.R[x][y] = temp;
-
-                    //if (x > binary.w - 6)
-                    //{
-                    //    rgb.B[x][y] = 0;
-                    //    rgb.G[x][y] = 0;
-                    //    rgb.R[x][y] = 0;
-                    //}
-                    //}
-                }
-            }
+            //        //if (x > binary.w - 6)
+            //        //{
+            //        //    rgb.B[x][y] = 0;
+            //        //    rgb.G[x][y] = 0;
+            //        //    rgb.R[x][y] = 0;
+            //        //}
+            //        //}
+            //    }
+            //}
         }
-        public void Visit(image_Gray grey) { }
-        private List<Tuple<int, int, int, int>> segment(image_RGB binary)
+        public void Visit(lab01biometria.image_Gray grey) { }
+        private List<Tuple<int, int, int, int>> segment(lab01biometria.image_RGB binary)
         {
             List<Tuple<int, int>> bufor = new List<Tuple<int, int>>();
             List<Tuple<int, int, int, int>> wspolrzedne = new List<Tuple<int, int, int, int>>();

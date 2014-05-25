@@ -108,7 +108,24 @@ namespace lab01biometria
 
         //    return temp;
         //}
+        public void grey()
+        {
+            byte z;
+           
+            for (int i = 0; i < w; i++)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    z = (byte)((this.B[i][j] + this.G[i][j] + this.R[i][j]) / 3);
+                    this.B[i][j] = z;
+                    this.G[i][j] = z;
+                    this.R[i][j] = z;
 
+                }
+
+            }
+            
+        }
  
 
 
@@ -122,10 +139,10 @@ namespace lab01biometria
                 for (int j = 0; j < h; j++)
                 {
                     z = (byte)((this.B[i][j] + this.G[i][j] + this.R[i][j]) / 3);
-                    temp[4 * (j * w + i)] = z;
-                    temp[4 * (j * w + i) + 1] = z;
-                    temp[4 * (j * w + i) + 2] = z;
-                    temp[4 * (j * w + i) + 3] = alfa[i][j];
+                    this.B[i][j] = z;
+                    this.G[i][j] = z;
+                    this.R[i][j] = z;
+                   
                 }
 
             }

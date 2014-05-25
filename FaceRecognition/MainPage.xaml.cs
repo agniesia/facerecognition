@@ -264,7 +264,7 @@ namespace FaceRecognition
 
         private void find_elents_Click(object sender, RoutedEventArgs e)
         {
-            method = new FaceElementDetect();
+            method = new EarRecognition.Points();
             method.rob(ImageToWork);
             //methodrob(method);
             bitmpe(ImageToWork);
