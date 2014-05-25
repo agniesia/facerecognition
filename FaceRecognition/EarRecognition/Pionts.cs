@@ -50,24 +50,7 @@ namespace EarRecognition
             var srx = sumax / punkty.Count;
             var sry = sumay / punkty.Count;
         }
-        private void showskielett(lab01biometria.image_RGB szkielet, lab01biometria.image_RGB rgb)
-        {
-            var contour = new Countur();
-           
-            contour.rob(szkielet);
-            for (int i = 0; i < rgb.w; i++)
-            {
-                for (int j = 0; j < rgb.h; j++)
-                {
-                   if(szkielet.R[i][j]==0){
-                    rgb.R[i][j] = 255;
-                    rgb.G[i][j] = 255;
-                    rgb.B[i][j] = 255;
-                   }
-
-                }
-            }
-        }
+       
         private void ExtratctAll(lab01biometria.image_RGB szkielet, lab01biometria.image_RGB rgb, lab01biometria.image_RGB orginal)
         {
             var contour = new Countur();
@@ -142,24 +125,37 @@ namespace EarRecognition
         {
             var findeear = new FindEar();
             findeear.rob(rgb);
-            orginal.R[findeear.punkt1.Item1][findeear.punkt1.Item2] = 0;
-            orginal.G[findeear.punkt1.Item1][findeear.punkt1.Item2] = 0;
-            orginal.B[findeear.punkt1.Item1][findeear.punkt1.Item2] = 255;
-
-            //------------------
-            orginal.R[findeear.punkt2.Item1][findeear.punkt2.Item2] = 0;
-            orginal.G[findeear.punkt2.Item1][findeear.punkt2.Item2] = 0;
-            orginal.B[findeear.punkt2.Item1][findeear.punkt2.Item2] = 255;
-
-            orginal.R[findeear.punkt3.Item1][findeear.punkt3.Item2] = 0;
-            orginal.G[findeear.punkt3.Item1][findeear.punkt3.Item2] = 0;
-            orginal.B[findeear.punkt3.Item1][findeear.punkt3.Item2] = 255;
-
-            orginal.R[findeear.punkt4.Item1][findeear.punkt4.Item2] = 0;
-            orginal.G[findeear.punkt4.Item1][findeear.punkt4.Item2] = 0;
-            orginal.B[findeear.punkt4.Item1][findeear.punkt4.Item2] = 255;
+            //try
+            //{
+            //    orginal.R[findeear.punkt1.Item1][findeear.punkt1.Item2] = 0;
+            //    orginal.G[findeear.punkt1.Item1][findeear.punkt1.Item2] = 0;
+            //    orginal.B[findeear.punkt1.Item1][findeear.punkt1.Item2] = 255;
+            //}
+            //catch (Exception b) { }
+            ////------------------
+            //try
+            //{
+            //    orginal.R[findeear.punkt2.Item1][findeear.punkt2.Item2] = 0;
+            //    orginal.G[findeear.punkt2.Item1][findeear.punkt2.Item2] = 0;
+            //    orginal.B[findeear.punkt2.Item1][findeear.punkt2.Item2] = 255;
+            //}
+            //catch (Exception b) { }
+            //try
+            //{
+            //    orginal.R[findeear.punkt3.Item1][findeear.punkt3.Item2] = 0;
+            //    orginal.G[findeear.punkt3.Item1][findeear.punkt3.Item2] = 0;
+            //    orginal.B[findeear.punkt3.Item1][findeear.punkt3.Item2] = 255;
+            //}
+            //catch (Exception b) { }
+            //try
+            //{
+            //    orginal.R[findeear.punkt4.Item1][findeear.punkt4.Item2] = 0;
+            //    orginal.G[findeear.punkt4.Item1][findeear.punkt4.Item2] = 0;
+            //    orginal.B[findeear.punkt4.Item1][findeear.punkt4.Item2] = 255;
+            //}
+            //catch (Exception b) { }
             var x = findeear.punkt4.Item1 - findeear.punkt2.Item1;
-            var y= findeear.punkt4.Item2-findeear.punkt2.Item2;
+           var y= findeear.punkt4.Item2-findeear.punkt2.Item2;
             var s= findeear.punkt1.Item1-findeear.punkt3.Item1;
             var t= findeear.punkt1.Item2 - findeear.punkt3.Item2;
             if((Math.Pow(x,x)+Math.Pow(y,y)>Math.Pow(s,s)+ Math.Pow(t,t)))

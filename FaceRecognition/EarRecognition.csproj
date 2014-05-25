@@ -106,7 +106,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="EarRecognition\Countur.cs" />
+    <Compile Include="EarRecognition\maskashowphoto.cs" />
+    <Compile Include="EarRecognition\maskashow.cs" />
     <Compile Include="EarRecognition\Pionts.cs" />
+    <Compile Include="EarRecognition\ShowContour.cs" />
     <Compile Include="FaceRecognition\FaceElementDetect.cs" />
     <Compile Include="FaceRecognition\HistogramFaceElement.cs" />
     <Compile Include="FaceRecognition\HSVfacerecognition.cs" />

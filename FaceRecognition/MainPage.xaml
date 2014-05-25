@@ -39,31 +39,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Viewbox x:Name="allview" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="text" Grid.Column="1" HorizontalAlignment="Center" Margin="20,20,40,20" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="48" FontFamily="Kunstler Script" Foreground="#FF010101" TextAlignment="Justify">
-        	<Run Text="This program fi"/>
-        	<Run Text="n"/>
-        	<Run Text="d"/>
-        	<Run Text="s"/>
-        	<Run Text=" face with "/>
-        	<Run Text="its"/>
-        	<Run Text=" elements"/>
-        	<Run Text=":"/>
-        	<Run Text=" eyes mouth and nose. "/>
-        	<Run Text="T"/>
-        	<Run Text="here are four biometric methods"/>
-        	<Run Text=" to recognize face"/>
-        	<Run Text=". The methods "/>
-        	<Run Text="work "/>
-        	<Run Text="only for "/>
-        	<Run Text="portrait photos. "/>
-        	<Run Text="P"/>
-        	<Run Text="ortrait"/>
-        	<Run Text=" "/>
-        	<Run Text="photo should contain on"/>
-        	<Run Text="l"/>
-        	<Run Text="y "/>
-        	<Run Text="single"/>
-        	<Run Text=" face."/>
+        <TextBlock x:Name="text" Grid.Column="1" HorizontalAlignment="Center" Margin="20,20,40,20" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="48" FontFamily="Nyala" Foreground="#FFFEF3FF" TextAlignment="Justify">
+        	<Run Text="This program "/>
+        	<Run Text="show extracting of characteristic points in fe"/>
+        	<Run Text="w"/>
+        	<Run Text=" steps:"/>
+        	<LineBreak/>
+        	<Run Text="-Skeleton"/>
+        	<Run Text="ize "/>
+        	<Run Text="Ear"/>
+        	<LineBreak/>
+        	<Run Text="-"/>
+        	<Run Text="Find "/>
+        	<Run Text="Ear"/>
+        	<LineBreak/>
+        	<Run Text="-Extract points"/>
         </TextBlock>
         <Border x:Name="ramka" BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2" Margin="20">
         	<Border.Background>
@@ -86,11 +76,11 @@
         	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E" Grid.Row="1" Grid.Column="1"/>
         	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E" Grid.Row="3" Grid.ColumnSpan="2"/>
         	<Ellipse Fill="#332D2DBE" Margin="0" Stroke="#FFA2CC9E"/>
-        	<Button x:Name="HSVmethod" Content="HSV method" HorizontalAlignment="Stretch" Margin="0" Grid.Row="1" VerticalAlignment="Stretch" FontSize="48" Click="HSVmethod_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}"/>
-        	<Button x:Name="SV_method" Content="SV method" HorizontalAlignment="Stretch" Margin="0" Grid.Row="1" VerticalAlignment="Stretch" FontSize="48" Click="SV_method_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}" Grid.Column="1"/>
-        	<Button x:Name="Join_method" Content="Join all methods" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" FontSize="48" Click="Join_method_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}"/>
-        	<Button x:Name="find_elents" Content="Find face's elements" HorizontalAlignment="Stretch" Margin="0" Grid.Row="2" VerticalAlignment="Stretch" FontSize="48" Click="find_elents_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00934242" Background="{x:Null}" Grid.ColumnSpan="2"/>
-        	<Button x:Name="RGBmethod" Content="RGB method" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" FontSize="48" Click="RGBmethod_Click" FontFamily="Kunstler Script" Foreground="#FF010101" BorderBrush="#00BEBEBE" Background="{x:Null}"/>
+        	<Button x:Name="HSVmethod" Content="Mask &amp; photo" HorizontalAlignment="Stretch" Margin="0" Grid.Row="1" VerticalAlignment="Stretch" FontSize="48" Click="HSVmethod_Click" FontFamily="Nyala" Foreground="#FFFEF7FF" BorderBrush="#00934242" Background="{x:Null}"/>
+        	<Button x:Name="SV_method" Content="Skeleton &amp; photo" HorizontalAlignment="Stretch" Margin="0" Grid.Row="1" VerticalAlignment="Stretch" FontSize="48" Click="SV_method_Click" FontFamily="Nyala" Foreground="#FFFEF7FF" BorderBrush="#00934242" Background="{x:Null}" Grid.Column="1"/>
+        	<Button x:Name="Join_method" Content="Mask" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" FontSize="48" Click="Join_method_Click" FontFamily="Nyala" Foreground="#FFFEF7FF" BorderBrush="#00934242" Background="{x:Null}"/>
+        	<Button x:Name="find_elents" Content="Characteristis Points" HorizontalAlignment="Stretch" Margin="0" Grid.Row="2" VerticalAlignment="Stretch" FontSize="48" Click="find_elents_Click" FontFamily="Nyala" Foreground="#FFFEF7FF" BorderBrush="#00934242" Background="{x:Null}" Grid.ColumnSpan="2"/>
+        	<Button x:Name="RGBmethod" Content="Skeleton" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" FontSize="48" Click="RGBmethod_Click" FontFamily="Nyala" Foreground="#FFFEF7FF" BorderBrush="#00BEBEBE" Background="{x:Null}"/>
         	
         </Grid>
 

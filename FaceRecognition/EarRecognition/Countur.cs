@@ -159,5 +159,6 @@ namespace EarRecognition
             var segment = new lab01biometria.Binaryoperation.Segmentation();
             segment.rob(rgb);
         }
+      
     }
 }

@@ -224,7 +224,7 @@ namespace FaceRecognition
 
         private void RGBmethod_Click(object sender, RoutedEventArgs e)
         {
-            method = new RGBfaceRecognition();
+            method = new EarRecognition.Countur();
             method.rob(ImageToWork);
             bitmpe(ImageToWork);
             org.RestoreMemento(caretaker.Memento);
@@ -233,7 +233,7 @@ namespace FaceRecognition
 
         private void HSVmethod_Click(object sender, RoutedEventArgs e)
         {
-            method = new HSVfaceRecognition();
+            method = new EarRecognition.maskashowphoto();
             method.rob(ImageToWork);
             //methodrob(method);
             bitmpe(ImageToWork);
@@ -243,7 +243,7 @@ namespace FaceRecognition
 
         private void SV_method_Click(object sender, RoutedEventArgs e)
         {
-            method = new SVfaceRecognition();
+            method = new EarRecognition.ShowContour();
             method.rob(ImageToWork);
             //methodrob(method);
             bitmpe(ImageToWork);
@@ -253,7 +253,8 @@ namespace FaceRecognition
 
         private void Join_method_Click(object sender, RoutedEventArgs e)
         {
-            method = new JoinRecogntion();
+
+            method = new EarRecognition.maskashow();
             method.rob(ImageToWork);
             //methodrob(method);
             bitmpe(ImageToWork);
